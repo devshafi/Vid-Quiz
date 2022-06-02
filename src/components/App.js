@@ -2,6 +2,7 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import { AuthProvider } from '../contexts/AuthContext';
+import PrivateRoute from "../routes/PrivateRoute";
 import '../styles/App.css';
 import Layout from './Layout';
 import Home from './pages/Home';
@@ -20,8 +21,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
-            <Route path="quiz" element={<Quiz />} />
-            <Route path="result" element={<Result />} />
+            <Route path="quiz" element={<PrivateRoute><Quiz /></PrivateRoute>} />
+            <Route path="result" element={<PrivateRoute><Result /></PrivateRoute>} />
+
+            {/* wrong routes */}
+            <Route path="*" element={<p>There's nothing here: 404!</p>} />
           </Routes>
         </Layout>
       </AuthProvider>

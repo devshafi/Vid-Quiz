@@ -23,7 +23,7 @@ export default function LoginForm() {
             setError("") // remove previous error
             setLoading(true);
             await login(email, password);
-            navigate("/");
+            navigate("/", { replace: true });
         } catch (error) {
             console.log('login error', error);
             setError("Failed to login");
