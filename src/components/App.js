@@ -2,8 +2,9 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import { AuthProvider } from '../contexts/AuthContext';
-import PrivateRoute from "../routes/PrivateRoute";
 import '../styles/App.css';
+import PrivateOutlet from './../routes/PrivateOutlet';
+import PublicOutlet from './../routes/PublicOutlet';
 import Layout from './Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -19,13 +20,22 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="login" element={<Login />} />
-            <Route path="quiz" element={<PrivateRoute><Quiz /></PrivateRoute>} />
-            <Route path="result" element={<PrivateRoute><Result /></PrivateRoute>} />
 
-            {/* wrong routes */}
-            <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            <Route path="/*" element={<PublicOutlet />}>
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+            </Route>
+
+            {/* Not recommended */}
+            {/* <Route path="quiz" element={<PrivateRoute><Quiz /></PrivateRoute>} /> 
+            <Route path="result" element={<PrivateRoute><Result /></PrivateRoute>} /> */}
+
+            <Route path="/*" element={<PrivateOutlet />} >
+              <Route path="quiz" element={<Quiz />} />
+              <Route path="result" element={<Result />} />
+            </Route>
+
+
           </Routes>
         </Layout>
       </AuthProvider>
