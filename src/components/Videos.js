@@ -21,16 +21,24 @@ export default function Videos() {
                 >
                     {
                         videos.map(video => (
-                            <Link
-                                to="quiz"
-                                key={video.youtubeID}
-                            >
-                                <Video
-                                    title={video.title}
-                                    id={video.youtubeID}
-                                    noq={video.noq}
-                                />
-                            </Link>
+                            video.noq > 0 ?
+                                (<Link
+                                    to="quiz"
+                                    key={video.youtubeID}
+                                >
+                                    <Video
+                                        title={video.title}
+                                        id={video.youtubeID}
+                                        noq={video.noq}
+                                    />
+                                </Link>) :
+                                (
+                                    <Video
+                                        title={video.title}
+                                        id={video.youtubeID}
+                                        noq={video.noq}
+                                    />
+                                )
                         ))
                     }
 
