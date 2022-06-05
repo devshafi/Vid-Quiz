@@ -1,9 +1,17 @@
 
-import { get, getDatabase, limitToFirst, orderByKey, query, ref, startAt } from 'firebase/database';
+import {
+    get,
+    getDatabase,
+    limitToFirst,
+    orderByKey,
+    query,
+    ref,
+    startAt
+} from 'firebase/database';
 import { useEffect, useState } from 'react';
 
 export default function useVideoList(page) {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [videos, setVideos] = useState([])
     const [hasMore, setHasMore] = useState(true);
@@ -34,12 +42,15 @@ export default function useVideoList(page) {
             } catch (error) {
                 console.log('fetch videos error', error)
                 setError(true);
+
             }
             finally {
-                setLoading(false)
+                setLoading(false);
             }
+
         }
         fetchVideos();
+
     }, [page])
 
     return {

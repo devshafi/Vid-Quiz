@@ -18,12 +18,13 @@ export default function Videos() {
                     dataLength={videos.length}
                     hasMore={hasMore}
                     next={() => setPage(page + 8)}
+                    loader="Loading from loader..."
                 >
                     {
                         videos.map(video => (
                             video.noq > 0 ?
                                 (<Link
-                                    to="quiz"
+                                    to={`quiz/${video.youtubeID}`}
                                     key={video.youtubeID}
                                 >
                                     <Video
@@ -37,6 +38,7 @@ export default function Videos() {
                                         title={video.title}
                                         id={video.youtubeID}
                                         noq={video.noq}
+                                        key={video.youtubeID}
                                     />
                                 )
                         ))

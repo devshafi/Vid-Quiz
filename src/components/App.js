@@ -31,8 +31,8 @@ function App() {
             <Route path="result" element={<PrivateRoute><Result /></PrivateRoute>} /> */}
 
             <Route path="/*" element={<PrivateOutlet />} >
-              <Route path="quiz" element={<Quiz />} />
-              <Route path="result" element={<Result />} />
+              <Route path="quiz/:id" element={<Quiz />} />
+              <Route path="result/:id" element={<Result />} />
             </Route>
 
 
