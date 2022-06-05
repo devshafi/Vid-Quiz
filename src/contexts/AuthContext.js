@@ -13,7 +13,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [loading, setLoading] = useState(true);
+    const [setLoading] = useState(true);
     const [currentUser, setCurrentUser] = useState();
 
     useEffect(() => {
