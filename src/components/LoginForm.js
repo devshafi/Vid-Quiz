@@ -52,7 +52,7 @@ export default function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <Button disables={loading} type="submit">
+            <Button disabled={loading} type="submit">
                 <span>Submit now</span>
             </Button>
             {error && <p className="error">{error}</p>}
